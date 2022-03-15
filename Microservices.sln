@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{831D8C64-7231-45DC-B96B-4C87FEDD8761}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{48572584-3157-41F2-9A8E-65642CB19B0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroCloud.Services.Catalog", "Services\Catalog\MicroCloud.Services.Catalog\MicroCloud.Services.Catalog.csproj", "{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{ACF28A99-DC48-48F5-A05B-59146827949C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroCloud.Shared", "Shared\MicroCloud.Shared\MicroCloud.Shared.csproj", "{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48572584-3157-41F2-9A8E-65642CB19B0F} = {831D8C64-7231-45DC-B96B-4C87FEDD8761}
+		{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E} = {48572584-3157-41F2-9A8E-65642CB19B0F}
+		{C119B769-7A19-46DB-B3D9-DBEAACD2EF63} = {ACF28A99-DC48-48F5-A05B-59146827949C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {293CB20F-4226-4258-846E-D962367DFC7E}
+	EndGlobalSection
+EndGlobal
