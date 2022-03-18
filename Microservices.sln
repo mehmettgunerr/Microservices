@@ -7,11 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{83
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{48572584-3157-41F2-9A8E-65642CB19B0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroCloud.Services.Catalog", "Services\Catalog\MicroCloud.Services.Catalog\MicroCloud.Services.Catalog.csproj", "{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroCloud.Services.Catalog", "Services\Catalog\MicroCloud.Services.Catalog\MicroCloud.Services.Catalog.csproj", "{7A7B7E48-0E52-4CDB-B40F-E320B74FB20E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{ACF28A99-DC48-48F5-A05B-59146827949C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroCloud.Shared", "Shared\MicroCloud.Shared\MicroCloud.Shared.csproj", "{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroCloud.Shared", "Shared\MicroCloud.Shared\MicroCloud.Shared.csproj", "{C119B769-7A19-46DB-B3D9-DBEAACD2EF63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{83B2CC9D-B51B-4BC3-80B3-6A423F198227}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroCloud.IdentityServer", "IdentityServer\MicroCloud.IdentityServer\MicroCloud.IdentityServer.csproj", "{7CAA5C39-BBAA-4943-89C7-56239BCA038B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
