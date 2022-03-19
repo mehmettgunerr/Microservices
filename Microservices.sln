@@ -23,7 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroCloud.Services.PhotoSt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{2D1ACE7E-1EFE-4988-8CBA-867BDE7380E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroCloud.Services.Basket", "Services\Basket\MicroCloud.Services.Basket\MicroCloud.Services.Basket.csproj", "{B0629603-7930-48DB-9F04-F31B3E76D0CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroCloud.Services.Basket", "Services\Basket\MicroCloud.Services.Basket\MicroCloud.Services.Basket.csproj", "{B0629603-7930-48DB-9F04-F31B3E76D0CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discount", "Discount", "{9C810636-8679-45CB-AF85-9E15431454CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroCloud.Services.Discount", "Services\Discount\MicroCloud.Services.Discount\MicroCloud.Services.Discount.csproj", "{DC7E113D-BB7A-46B3-ABD8-11B4EAC32687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,10 @@ Global
 		{B0629603-7930-48DB-9F04-F31B3E76D0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0629603-7930-48DB-9F04-F31B3E76D0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0629603-7930-48DB-9F04-F31B3E76D0CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC7E113D-BB7A-46B3-ABD8-11B4EAC32687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7E113D-BB7A-46B3-ABD8-11B4EAC32687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7E113D-BB7A-46B3-ABD8-11B4EAC32687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7E113D-BB7A-46B3-ABD8-11B4EAC32687}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,8 @@ Global
 		{89A6C3C7-782F-41E4-890B-EDB121CFE4F8} = {1A48E753-81E0-4BD0-A3B6-1C9CFB402F8F}
 		{2D1ACE7E-1EFE-4988-8CBA-867BDE7380E0} = {831D8C64-7231-45DC-B96B-4C87FEDD8761}
 		{B0629603-7930-48DB-9F04-F31B3E76D0CF} = {2D1ACE7E-1EFE-4988-8CBA-867BDE7380E0}
+		{9C810636-8679-45CB-AF85-9E15431454CF} = {831D8C64-7231-45DC-B96B-4C87FEDD8761}
+		{DC7E113D-BB7A-46B3-ABD8-11B4EAC32687} = {9C810636-8679-45CB-AF85-9E15431454CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {293CB20F-4226-4258-846E-D962367DFC7E}
