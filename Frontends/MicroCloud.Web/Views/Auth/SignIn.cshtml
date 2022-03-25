@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "SignIn";
+}
+@model MicroCloud.Web.Models.SigninInput
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Üye Giriş</h5>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form asp-controller="Auth" asp-action="SignIn" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input type="email" class="form-control" asp-for="Email" aria-describedby="emailHelp" value="mehmet@k2mbilisim.com">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input type="password" class="form-control" asp-for="Password" value="Meh.123">
+                        <span class="text-danger" asp-validation-for="Password"></span>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="IsRemember">
+                        <label class="form-check-label" asp-for="IsRemember"></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
