@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<CourseViewModel>
+
+<h2>Kurslar</h2>
+<hr />
+
+<div class="row">
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="col">
+                    <div class="card">
+                        <img src="@item.StockPictureUrl" class="card-img-top" alt="@item.Name" style="width: 100%; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="text-danger">@item.Category.Name</p>
+                            <p class="card-text">@item.Description</p>
+                            <h4 class="text-primary">@item.Price TL</h4>
+                            <a class="btn btn-success" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">Detay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">Kayıtlı kurs bulunamadı</div>
+    }
+</div>
+
