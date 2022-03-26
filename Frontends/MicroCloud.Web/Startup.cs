@@ -1,5 +1,6 @@
 ﻿using MicroCloud.Shared.Services;
 using MicroCloud.Web.Handler;
+using MicroCloud.Web.Helpers;
 using MicroCloud.Web.Models;
 using MicroCloud.Web.Services;
 using MicroCloud.Web.Services.Interfaces;
@@ -33,6 +34,7 @@ namespace MicroCloud.Web
             services.AddHttpContextAccessor();
             services.AddAccessTokenManagement(); //cache kısmı için
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+            services.AddSingleton<PhotoHelper>();
 
             var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
@@ -49,6 +51,11 @@ namespace MicroCloud.Web
             services.AddHttpClient<ICatalogService, CatalogService>(opt =>
             {
                 opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
+            }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+            services.AddHttpClient<IPhotoStockService, PhotoStockService>(opt =>
+            {
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.PhotoStock.Path}");
             }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>

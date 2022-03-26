@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace MicroCloud.Web.Models.Catalogs
 {
@@ -19,5 +20,7 @@ namespace MicroCloud.Web.Models.Catalogs
         [Required]
         [Display(Name = "Kurs kategori")]
         public string CategoryId { get; set; }
+        [Display(Name = "Kurs resmi")]
+        public IFormFile PhotoFormFile { get; set; }
     }
 }
