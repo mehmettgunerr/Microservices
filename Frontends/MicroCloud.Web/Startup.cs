@@ -1,10 +1,12 @@
-﻿using MicroCloud.Shared.Services;
+﻿using FluentValidation.AspNetCore;
+using MicroCloud.Shared.Services;
 using MicroCloud.Web.Extensions;
 using MicroCloud.Web.Handler;
 using MicroCloud.Web.Helpers;
 using MicroCloud.Web.Models;
 using MicroCloud.Web.Services;
 using MicroCloud.Web.Services.Interfaces;
+using MicroCloud.Web.Validators;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +43,7 @@ namespace MicroCloud.Web
             services.AddScoped<ClientCredentialTokenHandler>();
 
             services.AddHttpClientServices(Configuration);
-            
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
              {
                  opts.LoginPath = "/Auth/SignIn";
@@ -51,7 +53,7 @@ namespace MicroCloud.Web
 
              });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation((fv => fv.RegisterValidatorsFromAssemblyContaining<CourseCreateInputValidator>()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
