@@ -1,4 +1,5 @@
 ﻿using MicroCloud.Shared.Services;
+using MicroCloud.Web.Extensions;
 using MicroCloud.Web.Handler;
 using MicroCloud.Web.Helpers;
 using MicroCloud.Web.Models;
@@ -36,28 +37,11 @@ namespace MicroCloud.Web
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
             services.AddSingleton<PhotoHelper>();
 
-            var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
-
             services.AddScoped<ResourceOwnerPasswordTokenHandler>();
             services.AddScoped<ClientCredentialTokenHandler>();
-            services.AddHttpClient<IIdentityService, IdentityService>();
-            services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
 
-            services.AddHttpClient<IUserService, UserService>(opt =>
-            {
-                opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
-            }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
-
-            services.AddHttpClient<ICatalogService, CatalogService>(opt =>
-            {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
-            }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
-
-            services.AddHttpClient<IPhotoStockService, PhotoStockService>(opt =>
-            {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.PhotoStock.Path}");
-            }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
-
+            services.AddHttpClientServices(Configuration);
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
              {
                  opts.LoginPath = "/Auth/SignIn";

@@ -17,6 +17,7 @@
                         <img src="@item.StockPictureUrl" class="card-img-top" alt="@item.Name" style="width: 100%; height: 250px;">
                         <div class="card-body">
                             <h5 class="card-title">@item.Name</h5>
+                            <p class="text-danger">@item.Category.Name</p>
                             <p class="card-text">@item.Description</p>
                             <h4 class="text-primary">@item.Price TL</h4>
                             <a class="btn btn-success" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">Detay</a>
