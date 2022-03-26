@@ -11,10 +11,12 @@ namespace MicroCloud.Web.Services
     public class BasketService : IBasketService
     {
         private readonly HttpClient _httpClient;
+        private readonly IDiscountService _discountService;
 
-        public BasketService(HttpClient httpClient)
+        public BasketService(HttpClient httpClient, IDiscountService discountService)
         {
             _httpClient = httpClient;
+            _discountService = discountService;
         }
 
         public async Task AddBasketItem(BasketItemViewModel basketItemViewModel)
@@ -37,14 +39,35 @@ namespace MicroCloud.Web.Services
             await SaveOrBasket(basket);
         }
 
-        public Task<bool> ApplyDiscount(string discountCode)
+        public async Task<bool> ApplyDiscount(string discountCode)
         {
-            throw new System.NotImplementedException();
+            await CancelApplyDiscount();
+
+            var basket = await Get();
+
+            if (basket == null)
+                return false;
+
+            var hasDiscount = await _discountService.GetDiscount(discountCode);
+
+            if (hasDiscount == null)
+                return false;
+
+            basket.ApplyDiscount(hasDiscount.Code, hasDiscount.Rate);
+
+            return await SaveOrBasket(basket);
         }
 
-        public Task<bool> CancelApplyDiscount()
+        public async Task<bool> CancelApplyDiscount()
         {
-            throw new System.NotImplementedException();
+            var basket = await Get();
+
+            if (basket == null || !basket.HasDiscount)
+                return false;
+
+            basket.CancelDiscount();
+
+            return await SaveOrBasket(basket);
         }
 
         public async Task<bool> Delete()
