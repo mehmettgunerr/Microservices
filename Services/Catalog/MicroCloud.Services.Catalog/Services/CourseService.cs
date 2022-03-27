@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Mass = MassTransit;
 using MicroCloud.Services.Catalog.Dtos;
 using MicroCloud.Services.Catalog.Models;
 using MicroCloud.Services.Catalog.Settings;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroCloud.Shared.Messages;
 
 namespace MicroCloud.Services.Catalog.Services
 {
@@ -16,8 +18,9 @@ namespace MicroCloud.Services.Catalog.Services
         private readonly IMongoCollection<Course> _courseCollection;
         private readonly IMongoCollection<Category> _categoryCollection;
         private readonly IMapper _mapper;
+        private readonly Mass.IPublishEndpoint _publishEndpoint;
 
-        public CourseService(IMapper mapper,IDatabaseSettings databaseSettings)
+        public CourseService(IMapper mapper,IDatabaseSettings databaseSettings, Mass.IPublishEndpoint publishEndpoint)
         {
             var client = new MongoClient(databaseSettings.ConnectionString);
             var database = client.GetDatabase(databaseSettings.DatabaseName);
@@ -25,6 +28,7 @@ namespace MicroCloud.Services.Catalog.Services
             _courseCollection = database.GetCollection<Course>(databaseSettings.CourseCollectionName);
             _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
             _mapper = mapper;
+            _publishEndpoint = publishEndpoint;
         }
 
         public async Task<Response<List<CourseDto>>> GetAllAsync()
@@ -93,6 +97,8 @@ namespace MicroCloud.Services.Catalog.Services
 
             if (result == null)
                 return Response<NoContent>.Fail("Course not found",404);
+
+            await _publishEndpoint.Publish<CourseNameChangedEvent>(new CourseNameChangedEvent { CourseId = course.Id, UpdatedName = course.Name });
 
             return Response<NoContent>.Success(204);
         }
