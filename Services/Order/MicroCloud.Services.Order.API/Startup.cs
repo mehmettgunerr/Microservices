@@ -38,6 +38,7 @@ namespace MicroCloud.Services.Order.API
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<CreateOrderMessageCommandConsumer>();
+                x.AddConsumer<CourseNameChangedEventConsumer>();
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
@@ -47,8 +48,14 @@ namespace MicroCloud.Services.Order.API
                         host.Password("guest");
                     });
 
-                    cfg.ReceiveEndpoint("create-order-service", e => {
+                    cfg.ReceiveEndpoint("create-order-service", e =>
+                    {
                         e.ConfigureConsumer<CreateOrderMessageCommandConsumer>(context);
+                    });
+
+                    cfg.ReceiveEndpoint("course-name-changed-event-order-service", e =>
+                    {
+                        e.ConfigureConsumer<CourseNameChangedEventConsumer>(context);
                     });
                 });
             });
@@ -76,7 +83,8 @@ namespace MicroCloud.Services.Order.API
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
             services.AddMediatR(typeof(Application.Handlers.CreateOrderCommandHandler).Assembly); // herhangi biri olabilir. namespace bilgisi için aldık
 
-            services.AddControllers(opt => {
+            services.AddControllers(opt =>
+            {
                 opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
             });
             services.AddSwaggerGen(c =>

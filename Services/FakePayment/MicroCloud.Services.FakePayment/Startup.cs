@@ -43,8 +43,6 @@ namespace MicroCloud.Services.FakePayment
                 });
             });
 
-            //services.AddMassTransitHostedService();
-
             var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
