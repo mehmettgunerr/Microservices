@@ -1,6 +1,7 @@
 ﻿using MicroCloud.Web.Models.Orders;
 using MicroCloud.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace MicroCloud.Web.Controllers
@@ -28,19 +29,22 @@ namespace MicroCloud.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(CheckoutInfoInput checkoutInfoInput)
         {
-            var orderStatus = await _orderService.CreateOrder(checkoutInfoInput);
+            //var orderStatus = await _orderService.CreateOrder(checkoutInfoInput); //Senkron sistem
 
-            if (!orderStatus.IsSuccessfull)
+            var orderSuspend = await _orderService.SuspendOrder(checkoutInfoInput); //Asenkron sistem
+
+            if (!orderSuspend.IsSuccessful)
             {
                 var basket = await _basketService.Get();
 
                 ViewBag.basket = basket;
-                ViewBag.error = orderStatus.Error;
+                ViewBag.error = orderSuspend.Error;
 
                 return View();
             }
 
-            return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = orderStatus.OrderId });
+            //return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = orderStatus.OrderId });
+            return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = new Random().Next(1,1000) });
         }
 
         public IActionResult SuccessfullCheckout(int orderId)
