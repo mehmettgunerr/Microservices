@@ -47,7 +47,7 @@ namespace MicroCloud.Services.Basket
                         host.Password("guest");
                     });
 
-                    cfg.ReceiveEndpoint("course-name-changed-event-order-service", e =>
+                    cfg.ReceiveEndpoint("course-name-changed-event-basket-service", e =>
                     {
                         e.ConfigureConsumer<CourseNameChangedEventConsumer>(context);
                     });
