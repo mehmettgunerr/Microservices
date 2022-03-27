@@ -1,3 +1,4 @@
+using MicroCloud.Gateway.DelegateHandlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,8 @@ namespace MicroCloud.Gateway
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<TokenExchangeDelegateHandler>();
+
             services.AddAuthentication().AddJwtBearer("GatewayAuthenticationScheme", options =>
             {
                 options.Authority = Configuration["IdentityServerURL"];
@@ -33,7 +36,7 @@ namespace MicroCloud.Gateway
                 options.RequireHttpsMetadata = false;
             });
 
-            services.AddOcelot();
+            services.AddOcelot().AddDelegatingHandler<TokenExchangeDelegateHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

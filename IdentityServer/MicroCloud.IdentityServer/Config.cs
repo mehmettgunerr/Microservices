@@ -48,7 +48,7 @@ namespace MicroCloud.IdentityServer
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
-                new Client
+                  new Client
                 {
                     ClientName = "Asp.Net Core MVC",
                     ClientId ="WebMvcClient",
@@ -69,9 +69,7 @@ namespace MicroCloud.IdentityServer
                      AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                      AllowedScopes ={
                           "basket_fullpermission",
-                          "discount_fullpermission",
                           "order_fullpermission",
-                          "payment_fullpermission",
                           "gateway_fullpermission",
                           IdentityServerConstants.StandardScopes.Email,
                           IdentityServerConstants.StandardScopes.OpenId,
@@ -84,7 +82,19 @@ namespace MicroCloud.IdentityServer
                      RefreshTokenExpiration =TokenExpiration.Absolute, // süreyi ben belirliyorum
                      AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60) - DateTime.Now).TotalSeconds,
                      RefreshTokenUsage =TokenUsage.ReUse //refresh tekrar kullanılabilir olsun mu?
-                }
+                },
+                  new Client
+                {
+                    ClientName = "Token Exchange Client",
+                    ClientId ="TokenExchangeClient",
+                     ClientSecrets = { new Secret("secret".Sha256()) },
+                     AllowedGrantTypes = new[]{"urn:ietf:params:oauth:grant-type:token-exchange" },
+                     AllowedScopes ={
+                          "discount_fullpermission",
+                          "payment_fullpermission",
+                          IdentityServerConstants.StandardScopes.OpenId
+                         }
+                },
             };
     }
 }
